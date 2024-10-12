@@ -106,3 +106,12 @@ Un **RNN bidirectionnel** (ou **BiGRU** ou BiLSTM) résout ce problème en ajout
     .Somme : On additionne les deux vecteurs.
     .Moyenne : On fait la moyenne des deux vecteurs.
     .Multiplication : On multiplie les deux vecteurs élément par élément.
+
+**Limites** 
+Le HAN a réalisé des progrès significatifs dans le traitement et la compréhension du texte, mais il présente un inconvénient majeur. En effet, au premier niveau de son architecture (qui se concentre sur les phrases), chaque phrase est traitée indépendamment des autres. Cette isolation signifie que le modèle ne prend pas en compte le contexte ou la relation entre les phrases lors de leur encodage. Par conséquent, des informations importantes qui pourraient être tirées des relations entre les phrases peuvent être négligées, ce qui pourrait impacter la compréhension globale du texte. 
+
+L'article "Bidirectional Context-Aware Hierarchical Attention Network for Document Understanding" présente plusieurs améliorations au cadre du Réseau d'Attention Hiérarchique (HAN), qui a été efficace dans les tâches de compréhension de documents. La principale limitation du HAN est qu'il encode les phrases de manière isolée, ce qui peut entraver la capacité du modèle à comprendre les relations contextuelles entre les phrases.
+
+Pour y remédier, les auteurs proposent un Réseau d'Attention Hiérarchique Sensible au Contexte (CAHAN) qui intègre un codage bidirectionnel, permettant au modèle de prendre en compte à la fois les phrases précédentes et suivantes lors de la prise de décisions attentionnelles. Cette approche améliore la conscience contextuelle des embeddings de phrases, améliorant ainsi les performances du modèle sur diverses tâches.
+
+Les chercheurs ont réalisé des expériences sur trois ensembles de données à grande échelle, axées sur l'analyse des sentiments et la classification des sujets. Les résultats indiquent que le CAHAN bidirectionnel surpasse systématiquement le HAN original tout en augmentant légèrement les coûts de calcul. Les auteurs anticipent que les avantages du CAHAN seront encore plus marqués dans des tâches plus complexes, telles que le résumé abstrait.
