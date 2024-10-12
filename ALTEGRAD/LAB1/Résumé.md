@@ -47,3 +47,41 @@ Le **remplacement des opérations récurrentes par le mécanisme de self-attenti
 - Le mécanisme d'attention fournit une façon d'interpréter les décisions du modèle. En visualisant les poids d'attention, il est possible de comprendre quelles parties de la séquence influencent le plus les prédictions, offrant ainsi une meilleure transparence par rapport aux décisions du modèle.
 
 - Les résultats expérimentaux montrent que les modèles basés sur la self-attention surpassent souvent les architectures RNN traditionnelles sur des tâches de traduction et d'autres tâches de traitement du langage, notamment en termes de qualité des résultats et de rapidité d'entraînement.
+
+# HAN : Hierarchical Attention Network
+
+*Ce modèle a été introduit par Yang et al. dans leur article intitulé "Hierarchical Attention Networks for Document Classification" en 2016. L'idée clé derrière HAN est de capturer la structure hiérarchique naturelle des documents, en traitant d'abord les mots au sein des phrases, puis les phrases au sein des documents, en utilisant des mécanismes d'attention à chaque niveau.*
+
+**Architecture du HAN**
+
+a. Niveau des Mots (Word-Level)
+
+- Chaque mot du texte est converti en un vecteur dense (embedding) à l'aide d'une couche d'embedding (par exemple, Word2Vec, GloVe).
+Cela transforme les mots en représentations numériques permettant au réseau de traiter les informations textuelles.
+
+- Un BiGRU (Gated Recurrent Unit bidirectionnel) est utilisé pour capturer les dépendances contextuelles des mots au sein de chaque phrase.
+Le BiGRU lit la séquence de mots dans les deux directions (de gauche à droite et de droite à gauche), permettant de capturer des informations contextuelles complètes.
+
+- Une couche d'attention est appliquée sur les sorties du BiGRU. Ce mécanisme d'attention apprend à pondérer l'importance de chaque mot dans la phrase, en attribuant des coefficients d'attention qui reflètent la pertinence des mots pour la tâche spécifique (par exemple, classification).
+
+- La sortie de l'attention au niveau des mots est une représentation vectorielle de chaque phrase, pondérée par l'importance des mots.
+
+b. Niveau des Phrases (Sentence-Level)
+
+- Chaque représentation de phrase obtenue au niveau des mots est passée à travers un TimeDistributed (ou traitement séquentiel) qui applique le même encodeur (AttentionBiGRU) à chaque phrase du document. Cela permet de traiter chaque phrase indépendamment tout en maintenant la structure séquentielle du document.
+
+- Un autre BiGRU est utilisé pour capturer les dépendances contextuelles entre les phrases du document. Cela permet de comprendre comment les phrases interagissent et contribuent au sens global du document. Une deuxième couche d'attention est appliquée sur les sorties du BiGRU des phrases. Ce mécanisme attribue des poids aux phrases, identifiant celles qui sont les plus pertinentes pour la tâche (par exemple, identifier les phrases clés pour la classification).
+
+- La sortie de l'attention au niveau des phrases est une représentation vectorielle du document entier, pondérée par l'importance des phrases.
+
+c. Couche Finale de Prédiction
+
+- La représentation globale du document est passée à travers une couche linéaire suivie d'une fonction d'activation (par exemple, Sigmoid pour la classification binaire ou Softmax pour la classification multi-classes). Cela génère les prédictions finales du modèle.
+
+**Avantages du HAN** 
+ 
+- En traitant séparément les niveaux des mots et des phrases, HAN reflète mieux la structure naturelle des documents.
+
+- L'attention permet au modèle de se concentrer sur les parties les plus pertinentes du texte, améliorant ainsi les performances en se basant sur l'importance contextuelle.
+
+- Les coefficients d'attention fournissent une certaine interprétabilité, montrant quelles phrases et quels mots ont été jugés importants par le modèle pour prendre une décision.
