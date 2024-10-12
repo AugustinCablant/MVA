@@ -85,3 +85,24 @@ c. Couche Finale de Prédiction
 - L'attention permet au modèle de se concentrer sur les parties les plus pertinentes du texte, améliorant ainsi les performances en se basant sur l'importance contextuelle.
 
 - Les coefficients d'attention fournissent une certaine interprétabilité, montrant quelles phrases et quels mots ont été jugés importants par le modèle pour prendre une décision.
+
+**Remarque** 
+*Qu'est-ce que la bidirectionnalité ?*
+
+Dans un **RNN traditionnel** (ou un GRU/LSTM), les informations sont propagées d'une manière séquentielle dans une seule direction, c'est-à-dire de gauche à droite dans une séquence temporelle (ou dans un texte). Par exemple, si on a une phrase, le modèle traite d'abord le premier mot, puis le deuxième, et ainsi de suite jusqu'au dernier mot. Cela signifie que, pour chaque mot, le modèle ne connaît que le contexte des mots précédents.
+
+Exemple problématique : "Les chercheurs ont découvert un vaccin efficace contre le ...", le modèle doit attendre d'avoir vu le mot "virus" à la fin de la phrase pour comprendre que le mot "efficace" fait référence à l'efficacité contre une maladie.
+
+Un **RNN bidirectionnel** (ou **BiGRU** ou BiLSTM) résout ce problème en ajoutant une deuxième couche récurrente qui parcourt la séquence dans la direction opposée, c'est-à-dire de droite à gauche. Cela permet au modèle de prendre en compte le contexte provenant des deux côtés de chaque mot (ou chaque élément d'une séquence) pour produire une représentation plus riche.
+
+Étapes du traitement dans un RNN bidirectionnel :
+
+- RNN avant : Il parcourt la séquence d'entrée dans le sens chronologique, de gauche à droite. Pour chaque élément de la séquence (par exemple, un mot dans une phrase ou une image dans une série), il produit une représentation cachée basée sur cet élément et sur l'information accumulée jusqu'à cet instant.
+
+- RNN arrière : Il parcourt la séquence dans le sens inverse, de droite à gauche. De la même manière que le RNN avant, il produit une représentation cachée pour chaque élément, mais cette fois-ci en utilisant l'information venant des éléments qui apparaissent après dans la séquence.
+
+- Combinaison des deux représentations : Pour chaque élément de la séquence, les deux représentations (avant et arrière) sont combinées de manière à produire une représentation enrichie. Cela peut se faire de plusieurs manières courantes :
+    .Concaténation : On concatène les deux vecteurs de sortie pour chaque étape (le plus fréquent).
+    .Somme : On additionne les deux vecteurs.
+    .Moyenne : On fait la moyenne des deux vecteurs.
+    .Multiplication : On multiplie les deux vecteurs élément par élément.
