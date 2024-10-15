@@ -27,3 +27,7 @@ L'idée centrale du transfer learning est que les modèles d'apprentissage autom
 - **Feature extraction** : Le modèle pré-entraîné est utilisé tel quel pour extraire des caractéristiques pertinentes qui sont ensuite utilisées par un autre algorithme (par exemple un classificateur simple comme SVM ou un réseau neuronal à faible profondeur) pour effectuer la nouvelle tâche.
 
 - **Domain adaptation** : Cette méthode tente d'aligner les distributions des données source et cible, en ajustant les représentations apprises pour s'adapter au nouveau domaine, surtout lorsque les données de la tâche cible sont peu nombreuses ou trop différentes de la source.
+
+# Définitions : 
+
+- La "classification head" (tête de classification) est la dernière couche d'un modèle de réseau de neurones, spécifiquement conçue pour effectuer une tâche de classification. Elle prend en entrée les représentations apprises par le reste du modèle (par exemple, les features extraites par un Transformer ou un réseau convolutif) et produit une prédiction finale sous forme de probabilité pour chaque classe cible.
