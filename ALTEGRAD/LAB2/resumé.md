@@ -31,3 +31,6 @@ L'idée centrale du transfer learning est que les modèles d'apprentissage autom
 # Définitions : 
 
 - La "classification head" (tête de classification) est la dernière couche d'un modèle de réseau de neurones, spécifiquement conçue pour effectuer une tâche de classification. Elle prend en entrée les représentations apprises par le reste du modèle (par exemple, les features extraites par un Transformer ou un réseau convolutif) et produit une prédiction finale sous forme de probabilité pour chaque classe cible.
+
+- **DataLoader** est une classe de PyTorch qui permet de charger un jeu de données et de le diviser en mini-batches, utilisés pendant l'entraînement d'un modèle. Cela aide à entraîner le modèle plus efficacement en traitant plusieurs échantillons de données à la fois.
+Les **mini-batches** sont des petits sous-ensembles du jeu de données complet. En traitant un mini-batch à la fois, le modèle peut s'entraîner de manière plus rapide et stable, par rapport à traiter l'ensemble des données en une seule fois (batch complet) ou un seul exemple à la fois (stochastique).
