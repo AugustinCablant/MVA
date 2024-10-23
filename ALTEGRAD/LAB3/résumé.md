@@ -43,3 +43,18 @@ Un article clé qui a introduit les scaling laws est celui d'OpenAI sur les mod�
 
 **Loi de Zipf** : La loi énonce que la fréquence d'un mot dans un corpus de texte est inversement proportionnelle à son rang dans la liste des mots classés par fréquence décroissante. 
 Si on classe les mots d'un corpus selon leur fréquence d'apparition, la loi de Zipf prédit que le n-ième mot le plus fréquent apparaîtra avec une fréquence proportionnelle à $\frac{1}{n}$ 1 Autrement dit, si le mot le plus fréquent apparaît $f_1$ fois, alors le second mot apparaîtra environ $\frac{f_1}{2}$ fois, le troisième $\frac{f_1}{3}$ fois, et ainsi de suite.
+
+
+**pad_token** : Le pad_token (token de remplissage ou padding) est un token spécial utilisé dans le traitement du langage naturel (NLP) pour gérer des séquences de différentes longueurs dans des tâches d'apprentissage automatique. 
+Supposons que vous ayez deux phrases à traiter :
+
+- Phrase 1 : "Je cours"
+- Phrase 2 : "Je cours très vite"
+
+Pour les traiter en un batch, elles doivent avoir la même longueur. Si la deuxième phrase a 4 tokens et la première en a seulement 2, vous pouvez utiliser un pad_token pour compléter la première phrase à 4 tokens, comme ceci :
+
+- Phrase 1 (après padding) : "Je cours pad_token pad_token"
+- Phrase 2 : "Je cours très vite"
+
+Nous : tokenizer.pad_token = tokenizer.eos_token
+indique que le pad_token est défini pour être égal au eos_token (End Of Sequence), qui est le token utilisé pour marquer la fin d'une séquence. Cela signifie que le token de fin de séquence (généralement utilisé pour dire au modèle que la phrase est terminée) sera également utilisé pour remplir les séquences plus courtes.
