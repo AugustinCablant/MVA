@@ -39,3 +39,7 @@ Un article clé qui a introduit les scaling laws est celui d'OpenAI sur les mod�
 - La **perte** suit une relation en loi de puissance avec la taille du modèle, la quantité de données et les ressources de calcul. Cela signifie que la diminution de l'erreur suit une décroissance prévisible lorsque ces paramètres augmentent.
 
 - Il existe un point où les diminishing returns commencent : c’est-à-dire que les gains en performances deviennent de moins en moins significatifs à mesure que les augmentations des ressources (modèle, données, calcul) continuent.
+
+
+**Loi de Zipf** : La loi énonce que la fréquence d'un mot dans un corpus de texte est inversement proportionnelle à son rang dans la liste des mots classés par fréquence décroissante. 
+Si on classe les mots d'un corpus selon leur fréquence d'apparition, la loi de Zipf prédit que le n-ième mot le plus fréquent apparaîtra avec une fréquence proportionnelle à $\frac{1}{n}$ 1 Autrement dit, si le mot le plus fréquent apparaît $f_1$ fois, alors le second mot apparaîtra environ $\frac{f_1}{2}$ fois, le troisième $\frac{f_1}{3}$ fois, et ainsi de suite.
